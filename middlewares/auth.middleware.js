@@ -6,7 +6,7 @@ const moment = require('moment');
 module.exports.isAuthenticated = (req, res, next) =>{ 
    
   if(req.isAuthenticated()){      
-    console.log('you are auth back');
+    console.log('you are authh back');
     next();
   } else{  
     console.log('you are not auth back');
