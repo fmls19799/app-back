@@ -58,8 +58,6 @@ module.exports.edit = (req, res, next) =>{
         criteria = { $set: req.body};
     }
     
-    console.log(criteria);
-    
     User.findByIdAndUpdate(req.params.userId, criteria, { runValidators: true, new: true })
     .then(user => {
         
@@ -90,7 +88,7 @@ module.exports.createHouse = (req, res, next) =>{
     house.save()
     .then(house => {    
         console.log(house);
-            
+        
         res.status(201).json(house);
     })
     .catch(error => {

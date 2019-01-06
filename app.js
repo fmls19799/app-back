@@ -57,7 +57,9 @@ app.use(function (error, req, res, next) {
     error = createError(404, 'Resource not found');
   }
   
-  data.message = error.message;  
+  data.message = error.message; 
+  console.log(111, data);
+  
   res.json(data);
 });
 
