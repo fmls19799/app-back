@@ -59,6 +59,8 @@ app.use(function (error, req, res, next) {
   
   data.message = error.message;  
   res.json(data);
+  console.log(123, data);
+  
 });
 
 module.exports = app;
