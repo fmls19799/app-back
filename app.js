@@ -61,6 +61,8 @@ app.use(function (error, req, res, next) {
   console.log(111, data);
   
   res.json(data);
+  console.log(123, data);
+  
 });
 
 module.exports = app;

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAMAAAAPdrEwAAAAMFBMVEXx8fHCw8Xt7e2/wMLf4OHU1Nb09PTZ2drHyMrm5ubc3N3p6enLzM3R0tPj4+POztAdXyMCAAACAElEQVRYhe3Z0ZKDIAwFUEAEFbT//7erttOpS3ITUXf7YJ6XM5kUSTJrkrsoknHmonA3/X10CC5N3k/JhXAqHVzsbLOG7aJT4So69Hkm39E0uVfgKnr8cF/6eAYdki3k2bZJSlykw0TAKz4JtkSzsmxLdOLgJdIROiDZWpg2pkNky7GWJCIb0w4nbS08jGghaSFtTEtJw2pDOglJz2mDS4JosR64IpB+yAV51NGmk+mOP/1ftCxb+31ZX0dfeENCe9m9NnwbeNM9fxq/fHJBwGH8PI2SPNY+T8ZJj2r1ez2njbsMSlpsu5iGR6W2iy6JMC2Ic8jAzyHDsTmE7we4nWtoEzxpN/7wzLeMwF05qXbyGKybr4ct3lihzHraBONz846HN5q1YMcuk3xs2+jTybvMS19C/effsNxdQwcyDtMz0S8/3++IvjcCLzyqbnheuuKTWSIPcDeFbdeN1F73+emMAEd0LLMts48VtMsivOKZBTgabnXbYPZejt4hc/sjQ4ur1zZog6bzPjqracUSsw2ymZG0NNkQNqUQtDDYkDQx7FD0zt/wGQRT0mD0AGmX3ZKid16PZ2QNjec8Nm1NQfo6utgPSpqZlkS6mKYIeu/38qKLr4ag5b2LpFsNXSNbe9M3fdM3fdMUPTZVUUwiVG/0VaHojafFTf8lfd2/6H8A3/oYTLcYXXgAAAAASUVORK5CYII=',
+        // default: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAMAAAAPdrEwAAAAMFBMVEXx8fHCw8Xt7e2/wMLf4OHU1Nb09PTZ2drHyMrm5ubc3N3p6enLzM3R0tPj4+POztAdXyMCAAACAElEQVRYhe3Z0ZKDIAwFUEAEFbT//7erttOpS3ITUXf7YJ6XM5kUSTJrkrsoknHmonA3/X10CC5N3k/JhXAqHVzsbLOG7aJT4So69Hkm39E0uVfgKnr8cF/6eAYdki3k2bZJSlykw0TAKz4JtkSzsmxLdOLgJdIROiDZWpg2pkNky7GWJCIb0w4nbS08jGghaSFtTEtJw2pDOglJz2mDS4JosR64IpB+yAV51NGmk+mOP/1ftCxb+31ZX0dfeENCe9m9NnwbeNM9fxq/fHJBwGH8PI2SPNY+T8ZJj2r1ez2njbsMSlpsu5iGR6W2iy6JMC2Ic8jAzyHDsTmE7we4nWtoEzxpN/7wzLeMwF05qXbyGKybr4ct3lihzHraBONz846HN5q1YMcuk3xs2+jTybvMS19C/effsNxdQwcyDtMz0S8/3++IvjcCLzyqbnheuuKTWSIPcDeFbdeN1F73+emMAEd0LLMts48VtMsivOKZBTgabnXbYPZejt4hc/sjQ4ur1zZog6bzPjqracUSsw2ymZG0NNkQNqUQtDDYkDQx7FD0zt/wGQRT0mD0AGmX3ZKid16PZ2QNjec8Nm1NQfo6utgPSpqZlkS6mKYIeu/38qKLr4ag5b2LpFsNXSNbe9M3fdM3fdMUPTZVUUwiVG/0VaHojafFTf8lfd2/6H8A3/oYTLcYXXgAAAAASUVORK5CYII=',
     },
     description: {
         type: String,
@@ -45,7 +45,7 @@ userSchema.pre('save', function(next){
             return bcrypt.hash(this.password, salt);
         })
         .then(hash =>{
-            this.password = hash;
+            this.password = hash;            
             next();
         })
         .catch(error => {
