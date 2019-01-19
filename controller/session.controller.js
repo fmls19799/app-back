@@ -19,11 +19,11 @@ module.exports.doCreate = (req, res, next) =>{
                         next(error);
                     } else{
                         console.log('CORRECT PASSWORD');
-                        // let userOnyEmailAndName = {
-                        //     name: user.name,
-                        //     email: user.email
-                        // }
-                        res.status(200).json(user);    
+                        let userOnyEmailAndName = {
+                            name: user.name,
+                            email: user.email
+                        }
+                        res.status(200).json(userOnyEmailAndName);    
                     }
                 });
             }
