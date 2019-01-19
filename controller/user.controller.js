@@ -11,6 +11,8 @@ module.exports.createUser = (req, res, next)=>{
             throw createError(409, 'CODE_003');
         } else{
             user = new User(req.body);
+            console.log(user);
+            
             user.save()
             .then(user => {
                 res.status(201).json(user);
