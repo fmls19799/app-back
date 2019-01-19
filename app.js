@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 }); 
 
 app.use(function (error, req, res, next) {
-  console.error('ERROR==>>>', error);
+  console.error('ERROR:', error);
   
   res.status(error.status || 500);
   
@@ -57,12 +57,10 @@ app.use(function (error, req, res, next) {
     error = createError(404, 'Resource not found');
   }
   
-  data.message = error.message; 
-  console.log(111, data);
-  
+  data.message = error.message;  
   res.json(data);
-  console.log(123, data);
-  
 });
+
+
 
 module.exports = app;

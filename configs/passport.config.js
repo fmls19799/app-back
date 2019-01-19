@@ -31,7 +31,7 @@ module.exports.setup = passport => {
                     if(match){
                         next(null, user);
                     } else{                        
-                        throw createError(401, 'CODE_002');
+                        throw createError(401, 'CODE_002'); // INVALID EMAIL OR PASSWORD
                     }
                 });
             } else {
