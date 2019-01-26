@@ -15,50 +15,15 @@ module.exports.createProduct = (req, res, next)=>{
         console.log('1');
         next(error);
     })
-    //     User.findOne({email:req.body.email})
-    //     .then(user=>{
-    //         if (user) {
-    //             throw createError(409, 'CODE_003');
-    //         } else{
-    //             user = new User(req.body);            
-    //             user.save()
-    //             .then(user => {
-    //                 res.status(201).json(user);
-    //             })
-    //             .catch(error => {
-    //                 next(error);
-    //             });
-    //         }
-    //     })
-    //     .catch(error => {
-    //         next(error);
-    //     });
+};
+
+module.exports.findAllProducts = (req, res, next)=>{    
     
-    
-    
-    
-    // let stringToArrayCoords = req.body.location.split(',');
-    
-    // const house = new House(req.body);
-    // house.location.coordinates = stringToArrayCoords;
-    // house.owner = req.params.userId;
-    
-    // if (req.files) {            
-    //     house.photos = [];
-    //     for (const file of req.files) {
-    //         house.photos.push(`${req.protocol}://${req.get('host')}/uploads/${file.filename}`);
-    //     }
-    // }
-    
-    // house.save()
-    // .then(house => {    
-    //     console.log(house);
-    
-    //     res.status(201).json(house);
-    // })
-    // .catch(error => {
-    //     next(error);
-    // });
-    
-    
+    Product.find()
+    .then(products => {
+        res.status(201).json(products);
+    })
+    .catch((error)=>{
+        next(error);
+    });
 };
