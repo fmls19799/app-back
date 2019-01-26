@@ -5,6 +5,7 @@ const passport = require('passport');
 
 module.exports.doCreate = (req, res, next) =>{
     console.log('do create');
+    console.log(req.body);
     
     const { email, password } = req.body;
     
