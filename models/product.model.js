@@ -46,10 +46,10 @@ const productSchema = new mongoose.Schema({
     //         required: 'the location is required'
     //     },
     // },
-    address: {
-        type: String,
-        required: true,
-    },
+    // address: {
+    //     type: String,
+    //     required: true,
+    // },
 }, {timestamps: true,
     toObject: {
         virtuals: true, 

@@ -4,7 +4,7 @@ const Product = require('./../models/product.model');
 const moment = require('moment');
 
 //CREATE PRODUCT
-module.exports.createProduct = (req, res, next)=>{    
+module.exports.createProduct = (req, res, next)=>{        
     const product = new Product(req.body);
     
     product.save()
@@ -12,7 +12,6 @@ module.exports.createProduct = (req, res, next)=>{
         res.status(201).json(product);
     })
     .catch((error)=>{
-        console.log('1');
         next(error);
     })
 };
@@ -21,6 +20,8 @@ module.exports.findAllProducts = (req, res, next)=>{
     
     Product.find()
     .then(products => {
+        console.log(products.length);
+        
         res.status(201).json(products);
     })
     .catch((error)=>{
