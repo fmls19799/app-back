@@ -5,6 +5,8 @@ const moment = require('moment');
 
 //CREATE USER
 module.exports.createUser = (req, res, next)=>{
+    console.log(999, req.body);
+    
     User.findOne({email:req.body.email})
     .then(user=>{
         if (user) {

@@ -4,11 +4,14 @@ const Product = require('./../models/product.model');
 const moment = require('moment');
 
 //CREATE PRODUCT
-module.exports.createProduct = (req, res, next)=>{        
+module.exports.createProduct = (req, res, next)=>{ 
+    
+    // QUE HAGO CON REQ.FILES????? VER HOMEHACKER???
     const product = new Product(req.body);
     
     product.save()
     .then((product)=>{
+        
         res.status(201).json(product);
     })
     .catch((error)=>{

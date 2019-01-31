@@ -6,7 +6,7 @@ const uploader = require('./../configs/multer.config');
 
 // router.post('/', middleware.notAuth, productController.doCreate);
 router.get('/', productController.findAllProducts);
-router.post('/:userId/create', productController.createProduct);
+router.post('/:userId/create', uploader.array('photos'), productController.createProduct);
 
 // router.post('/delete', middleware.auth, productController.doDelete);
 

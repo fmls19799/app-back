@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
+const bodyparser = require ('body-parser');
 
 require('./configs/db.config');
 
@@ -27,6 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsConfig));
+app.use(bodyparser.urlencoded({
+  extended: true
+}));
+
 
 require("./configs/session.config")(app);
 
