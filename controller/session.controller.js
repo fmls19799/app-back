@@ -10,7 +10,7 @@ module.exports.doCreate = (req, res, next) =>{
     const { email, password } = req.body;
     
     if (!email || !password) {
-        throw createError(400, 'CODE_001'); // EMAIL OR PASSWORD EMPTY
+        throw createError(400, 'CODE_004'); // EMAIL OR PASSWORD EMPTY
     } else{
         passport.authenticate('auth-local', (error, user) =>{
             if (error) {
@@ -20,13 +20,9 @@ module.exports.doCreate = (req, res, next) =>{
                     if (error) {
                         next(error);
                     } else{
-                        console.log('CORRECT PASSWORD');
-                        // let userOnyEmailAndName = {
-                        //     name: user.name,
-                        //     email: user.email
-                        // }
-                        console.log(user);
+                        console.log(222, req.isAuthenticated());
                         
+                        console.log(user);
                         res.status(200).json(user);    
                     }
                 });

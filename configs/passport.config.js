@@ -26,6 +26,8 @@ module.exports.setup = passport => {
         User.findOne({email: email})
         .then(user =>{
             if (user) {
+                console.log(user);
+                
                 return user.checkPassword(password)
                 .then(match =>{
                     if(match){

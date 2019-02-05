@@ -18,11 +18,8 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-    },
-    description: {
-        type: String,
-        maxlength: 100
     }
+
 }, {timestamps: true,
     toJSON: {
         transform: (doc, ret) => {

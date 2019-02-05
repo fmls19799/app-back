@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: 'The name is required'
+        required: 'Name is required'
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,11 +15,18 @@ const productSchema = new mongoose.Schema({
     },
     price:{
         type: Number,
-        default: 0
+        // default: 0,
+        required: 'Price is required'
     },
     km:{
         type: Number,
         default: 0 
+    },
+    type: {
+        enum: ['Car', 'House']
+    },
+    rentOrBuy: {
+        enum: ['rent', 'buy', 'gift'],
     },
     // start: {
 	// 	type: Date,

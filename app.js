@@ -47,27 +47,31 @@ app.use(function(req, res, next) {
   next(createError(404)); 
 }); 
 
-app.use(function (error, req, res, next) {
-  console.log('ERROR:', error);
+app.use(function (error, req, res, next) {  
+  console.log(123, error);
   
   res.status(error.status || 500);
-  
-  const data = {};
+
+  let errorsArray = [];
   
   if (error instanceof mongoose.Error.ValidationError) {
     res.status(400);
+    
     for (field of Object.keys(error.errors)) {
-      error.errors[field] = error.errors[field].message;
+      errorsArray.push(error.errors[field].message)
     }
-    data.errors = error.errors;
   } else if (error instanceof mongoose.Error.CastError) {
+    // HACER ESTO??? COMO ERA???
     error = createError(404, 'Resource not found');
-  } 
+  } else{
+    for (field of Object.values(error)) {
+      errorsArray.push(field)
+    }
+  }
+  console.log(errorsArray);
   
-  data.message = error.message;  
-  res.json(data);
+  res.json(errorsArray);
 });
-
 
 
 module.exports = app;

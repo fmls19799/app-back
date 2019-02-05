@@ -4,13 +4,11 @@ const User = require('./../models/user.model');
 const moment = require('moment');
 
 //CREATE USER
-module.exports.createUser = (req, res, next)=>{
-    console.log(999, req.body);
-    
+module.exports.createUser = (req, res, next)=>{    
     User.findOne({email:req.body.email})
     .then(user=>{
         if (user) {
-            throw createError(409, 'CODE_003');
+            throw createError(409, 'CODE_003'); // user exists
         } else{
             user = new User(req.body);            
             user.save()
