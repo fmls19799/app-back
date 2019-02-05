@@ -1,6 +1,6 @@
 const originsAllowed = process.env.CORS_ORIGINS || [
   'http://localhost:3000',
-  'http://localhost:8111'
+  'http://localhost:8100'
 ];
 module.exports = {
   origin: function(origin, next) {

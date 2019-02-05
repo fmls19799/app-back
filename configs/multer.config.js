@@ -1,23 +1,13 @@
 const multer = require('multer');
 const path = require('path');
 
-console.log('HEEEY AAQUI');
-
 const storage = multer.diskStorage({
-    destination: function(req, file, next) {
-        console.log(req.file);
-        console.log(req.files);
-        console.log(file);
-        
-        
+    destination: function(req, file, next) {   
+        // guardo en mi pc, cuando sea produccion CAMBIARLO???    
         next(null, './public/uploads/');
     },
-    filename: function(req, file, next) {
-        console.log(req.file);
-        console.log(req.files);
-        console.log(file);
-        
-        
+    filename: function(req, file, next) {        
+        // le pongo nombre al file
         next(null, `${Date.now()}${path.extname(file.originalname)}`);
     }
 });

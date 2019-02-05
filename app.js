@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 }); 
 
 app.use(function (error, req, res, next) {
-  console.error('ERROR:', error);
+  console.log('ERROR:', error);
   
   res.status(error.status || 500);
   
@@ -62,7 +62,7 @@ app.use(function (error, req, res, next) {
     data.errors = error.errors;
   } else if (error instanceof mongoose.Error.CastError) {
     error = createError(404, 'Resource not found');
-  }
+  } 
   
   data.message = error.message;  
   res.json(data);
