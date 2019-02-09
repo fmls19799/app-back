@@ -19,6 +19,7 @@ const corsConfig = require('./configs/cors.config');
 const usersRouter = require('./routes/register.route');
 const sessionsRouter = require('./routes/sessions.route');
 const productsRouter = require('./routes/products.route');
+const wishlistRouter = require('./routes/wishlist.route');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(passport.session());
 app.use('/register', usersRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/products', productsRouter);
+app.use('/wishlist', wishlistRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) { 

@@ -7,7 +7,8 @@ const productSchema = new mongoose.Schema({
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     description: {
         type: String,
@@ -23,10 +24,16 @@ const productSchema = new mongoose.Schema({
         default: 0 
     },
     type: {
-        enum: ['Car', 'House']
+        type: String,
+        enum: ['Cars', 'Real state', 'Gaming', 'Cycling', 'Sports', 'Phones', 'Clothing', 'Boats']
     },
     rentOrBuy: {
-        enum: ['rent', 'buy', 'gift'],
+        type: String,
+        enum: ['Rent', 'Sell', 'Exchange', 'Gift'],
+    },
+    numberOfLikes: {
+        type: Number,
+        default: 0
     },
     // start: {
 	// 	type: Date,
