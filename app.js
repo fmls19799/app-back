@@ -16,7 +16,8 @@ require('./configs/db.config');
 require('./configs/passport.config').setup(passport);
 const corsConfig = require('./configs/cors.config');
 
-const usersRouter = require('./routes/register.route');
+const registerRouter = require('./routes/register.route');
+const userRouter = require('./routes/users.route');
 const sessionsRouter = require('./routes/sessions.route');
 const productsRouter = require('./routes/products.route');
 const wishlistRouter = require('./routes/wishlist.route');
@@ -39,8 +40,9 @@ require("./configs/session.config")(app);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/register', usersRouter);
+app.use('/register', registerRouter);
 app.use('/sessions', sessionsRouter);
+app.use('/users', userRouter);
 app.use('/products', productsRouter);
 app.use('/wishlist', wishlistRouter);
 

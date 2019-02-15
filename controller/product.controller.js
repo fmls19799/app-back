@@ -26,11 +26,24 @@ module.exports.createProduct = (req, res, next)=>{
     })
 };
 
-module.exports.findAllProducts = (req, res, next)=>{    
+module.exports.findAllProducts = (req, res, next)=>{  
+    // ESTO???  
+    // let skipping;
+    // let limit = 10;
+    
+    // if (req.query.page === 1) {
+    //     skipping = 0;
+    // } else{
+    //     skipping = limit * (req.query.page - 1)
+    // }
+    // Product.find({owner: { $ne: req.params.userId }}).skip(skipping).limit(limit)
+    // ESTO???
     
     Product.find()
     .populate('owner')
-    .then(products => {            
+    .then(products => {   
+        console.log(products.length);
+        
         res.status(201).json(products);
     })
     .catch((error)=>{
@@ -51,7 +64,7 @@ module.exports.findItemsOfUser = (req, res, next) =>{
 
 module.exports.getProductById = (req, res, next) =>{    
     console.log(req.params);
-        
+    
     Promise.all([
         Product.findById(req.params.productId).populate('owner'),
         WishProduct.findOne({ $and: [ { user: req.params.userId}, { product: req.params.productId}] })
@@ -83,7 +96,7 @@ module.exports.likeProduct = (req, res, next) =>{
         } else{
             Promise.all([
                 new WishProduct({user: req.params.userId, product: req.params.productId}).save(),
-                Product.findByIdAndUpdate(req.params.productId, {$inc: {numberOfLikes: 1}}, { runValidators: true, new: true })
+                Product.findByIdAndUpdate(req.params.productId, {$inc: {numberOfLikes: 1}}, { runValidators: true, new: true }).populate('owner')
             ])
             .then(([wishProduct, product])=>{
                 console.log(333, wishProduct);
@@ -119,7 +132,7 @@ module.exports.likeProduct = (req, res, next) =>{
 
 module.exports.unlikeProduct = (req, res, next) =>{      
     Promise.all([
-        Product.findByIdAndUpdate(req.params.productId, {$inc: {numberOfLikes: -1}}, { runValidators: true, new: true }),
+        Product.findByIdAndUpdate(req.params.productId, {$inc: {numberOfLikes: -1}}, { runValidators: true, new: true }).populate('owner'),
         WishProduct.findOneAndDelete({ $and: [ { user: req.params.userId}, { product: req.params.productId}] })
     ])
     .then(([product, wishProduct])=>{
