@@ -50,8 +50,8 @@ module.exports.findAllProducts = (req, res, next)=>{
     // Product.find({owner: { $ne: req.params.userId }})
     // Product.find({owner: { $ne: req.params.userId }}).skip(skipping).limit(limit)
     // Product.find({$and: [{owner: { $ne: req.params.userId }}, criteria]}).skip(skipping).limit(limit)
-    Product.find(criteria).skip(skipping).limit(limit)
-    // .populate('owner')
+    Product.find({$and: [{owner: { $ne: req.params.userId }}, criteria]}).skip(skipping).limit(limit)
+    .populate('owner')
     .then(products => {   
         console.log(products);
         
