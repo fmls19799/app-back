@@ -28,21 +28,32 @@ module.exports.createProduct = (req, res, next)=>{
 
 module.exports.findAllProducts = (req, res, next)=>{  
     // ESTO???  
-    // let skipping;
-    // let limit = 10;
+    console.log(req.query);
+    console.log(req.params);
+    criteria = {};
+    if (req.query.type) {
+        criteria.type = req.query.type;
+    } else if(req.query.rentOrBuy){
+        criteria.rentOrBuy = req.query.rentOrBuy;
+    }
     
-    // if (req.query.page === 1) {
-    //     skipping = 0;
-    // } else{
-    //     skipping = limit * (req.query.page - 1)
-    // }
-    // Product.find({owner: { $ne: req.params.userId }}).skip(skipping).limit(limit)
+    let skipping;
+    let limit = 10;
+    
+    if (req.query.page === 1) {
+        skipping = 0;
+    } else{
+        skipping = limit * (req.query.page - 1)
+    }
     // ESTO???
-    
-    Product.find()
-    .populate('owner')
+    // {$and:[{start:{$gte:req.query.start}},{end:{$lte:req.query.end}}]}]}
+    // Product.find({owner: { $ne: req.params.userId }})
+    // Product.find({owner: { $ne: req.params.userId }}).skip(skipping).limit(limit)
+    // Product.find({$and: [{owner: { $ne: req.params.userId }}, criteria]}).skip(skipping).limit(limit)
+    Product.find(criteria).skip(skipping).limit(limit)
+    // .populate('owner')
     .then(products => {   
-        console.log(products.length);
+        console.log(products);
         
         res.status(201).json(products);
     })
@@ -50,6 +61,20 @@ module.exports.findAllProducts = (req, res, next)=>{
         next(error);
     });
 };
+
+
+// ESTO??????
+// module.exports.findAllProducts = (req, res, next)=>{  
+//     Product.find({owner: { $ne: req.params.userId }})
+//     .populate('owner')
+//     .then(products => {           
+//         res.status(201).json(products);
+//     })
+//     .catch((error)=>{
+//         next(error);
+//     });
+// };
+
 
 module.exports.findItemsOfUser = (req, res, next) =>{
     Product.find({owner: req.params.userId})
