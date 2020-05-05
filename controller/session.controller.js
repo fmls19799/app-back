@@ -3,12 +3,9 @@
 const createError = require('http-errors');
 const passport = require('passport');
 
-module.exports.doCreate = (req, res, next) =>{
-    console.log('do create');
-    console.log(req.body);
-    
+module.exports.doCreate = (req, res, next) =>{    
     const { email, password } = req.body;
-    
+
     if (!email || !password) {
         throw createError(400, 'CODE_004'); // EMAIL OR PASSWORD EMPTY
     } else{

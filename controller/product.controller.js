@@ -4,6 +4,13 @@ const Product = require('./../models/product.model');
 const WishProduct = require('./../models/wishProduct.model');
 const moment = require('moment');
 
+// 'yourstuffeveryonestuff-9209a.appspot.com'
+
+// `https://firebasestorage.googleapis.com/v0/b/yourstuffeveryonestuff-9209a.appspot.com/o/products%2F${this.productChosen.name}%2F${result.metadata.name}?alt=media&token=`
+
+// 'https://firebasestorage.googleapis.com/v0/b/yourstuffeveryonestuff-9209a.appspot.com/o/products%2Fdsz%2F1551010553609_a.jpeg?alt=media&token=403a8d71-0d6c-4b48-bf86-1d0a3e6fc434'
+// 'https://firebasestorage.googleapis.com/v0/b/yourstuffeveryonestuff-9209a.appspot.com/o/products%2Fdsz%2F1551010706051_a.jpeg?alt=media&token=262864ac-fd6d-4496-9fd9-433317e1b9e9'
+// '1551010553609_a.jpeg'
 //CREATE PRODUCT
 module.exports.createProduct = (req, res, next)=>{     
     // QUE HAGO CON REQ.FILES????? VER HOMEHACKER???    
