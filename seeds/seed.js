@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 // QUITAR ESTO Y PONERLO COMO SE DEBE, CON VARIABLES  Y MNIRARR OTROS EHEMPLOES???
-mongoose.connect('mongodb://fran:Berna123@ds229909.mlab.com:29909/yourstuffeveryonestuff', { useNewUrlParser: true })
+mongoose.connect('mongodb://fmls1989@gmail.com:Berna123@ds229909.mlab.com:29909/yourstuffeveryonestuff', { useNewUrlParser: true })
 .then((data)=>console.log(`Connected to db MLAB - ${data.connection.name}`))
 .catch(error => console.log(`An error ocurred ${error}`));
 
