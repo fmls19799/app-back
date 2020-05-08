@@ -1,52 +1,58 @@
-require('dotenv').config();
-
-const createError = require('http-errors');
+// IMPORT MODULES
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const session = require('express-session');
-const cors = require('cors');
-const bodyparser = require ('body-parser');
-
-require('./configs/db.config');
-
-require('./configs/passport.config').setup(passport);
+const dotenv = require('dotenv').config();
+const createError = require('http-errors');
 const corsConfig = require('./configs/cors.config');
+const cors = require('cors');
 
+// LOCAL VARIABLES
+const PORT = process.env.PORT || 8080;
+
+// INSTANTIATE EXPRESS APP
+const app = express();
+
+// IMPORT ROUTES
 const registerRouter = require('./routes/register.route');
 const userRouter = require('./routes/users.route');
 const sessionsRouter = require('./routes/sessions.route');
 const productsRouter = require('./routes/products.route');
 const wishlistRouter = require('./routes/wishlist.route');
 
-const app = express();
+// CONNECT TO MONGODB
+require('./configs/db.config');
 
-app.use(logger('dev'));
+// USES
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsConfig));
-app.use(bodyparser.urlencoded({
-  extended: true
-}));
+app.use(bodyparser.json());
+// app.use(bodyparser.urlencoded({
+//     extended: true
+// }));
 
+// ??????
+app.use(express.static('www'))
 
-require("./configs/session.config")(app);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
+// USE ROUTES
 app.use('/register', registerRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/users', userRouter);
 app.use('/products', productsRouter);
 app.use('/wishlist', wishlistRouter);
 
-// catch 404 and forward to error handler
+// LISTEN TO PORT
+app.listen(PORT, () => {
+    console.log('SERVER STARTED AT PORT', PORT);
+})
+
+
+// CATCH ERRORS => catch 404 and forward to error handler
 app.use(function(req, res, next) { 
   next(createError(404)); 
 }); 
@@ -79,3 +85,27 @@ app.use(function (error, req, res, next) {
 
 
 module.exports = app;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
